@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "prices")
 public class PriceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
