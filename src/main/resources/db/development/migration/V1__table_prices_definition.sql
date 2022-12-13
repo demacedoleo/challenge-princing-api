@@ -1,6 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS capitole;
-
-CREATE TABLE IF NOT EXISTS `capitole`.`prices` (
+CREATE TABLE IF NOT EXISTS `prices` (
                           id int NOT NULL AUTO_INCREMENT,
                           brand_id int NOT NULL,
                           product_id int NOT NULL,
