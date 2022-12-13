@@ -2,6 +2,7 @@ package com.capitole.challenge.pricing.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +15,7 @@ public interface PriceRepository extends CrudRepository<PriceEntity, Integer> {
                     "FROM prices as p " +
                     "WHERE " +
                     "p.enabled = :enabled and p.brand_id = :brandID and p.product_id = :productID and " +
-                    "p.start_date <= :date and p.end_date > :date order by p.priority desc, p.start_date;"
+                    "p.start_date <= :date and p.end_date > :date order by p.priority desc, p.start_date desc limit 1;"
     )
-    Iterable<PriceEntity> findCurrentPrice(int brandID, int productID, LocalDateTime date, Boolean enabled);
+    Iterable<PriceEntity> findCurrentPrice(@Param("brandID") int brandID, @Param("productID") int productID, @Param("date") LocalDateTime date, @Param("enabled") Boolean enabled);
 }
