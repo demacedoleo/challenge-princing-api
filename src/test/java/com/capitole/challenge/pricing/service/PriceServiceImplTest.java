@@ -51,7 +51,10 @@ class PriceServiceImplTest {
                 any(Boolean.class))).thenReturn(priceEntityIterable);
         Optional<Price> current = service.findCurrentProductPrice(1, 35455, LocalDateTime.now(), true);
 
-        assertTrue(!current.isEmpty());
+        assertTrue(current.isPresent());
+        assertEquals(expectedBrand, current.get().getBrandID());
+        assertEquals(expectedProduct, current.get().getProductID());
+        assertEquals(expectedPriceList, current.get().getPriceList());
     }
 
     @Test
@@ -83,7 +86,7 @@ class PriceServiceImplTest {
         int expectedPriority = 1;
         int expectedPriceList = 2;
 
-        assertTrue(!current.isEmpty());
+        assertTrue(current.isPresent());
         assertEquals(expectedPriority, current.get().getPriority());
         assertEquals(expectedPriceList, current.get().getPriceList());
     }
